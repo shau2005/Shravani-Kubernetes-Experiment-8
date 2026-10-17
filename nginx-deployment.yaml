@@ -1,0 +1,25 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shravani-nginx-deployment
+  labels:
+    student: shravani
+  annotations:
+    student-name: "Shravani"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: shravani-nginx
+  template:
+    metadata:
+      labels:
+        app: shravani-nginx
+        student: shravani
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+          ports:
+            - containerPort: 80
