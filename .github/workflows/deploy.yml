@@ -1,0 +1,23 @@
+name: Shravani-K8s-CI-CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Verify kubectl
+        run: kubectl version --client
+
+      - name: Deploy to Kubernetes
+        run: kubectl apply -f nginx-deployment.yaml
+
+      - name: Verify Deployment
+        run: kubectl get deployments
